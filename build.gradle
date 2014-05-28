@@ -15,13 +15,16 @@ apply plugin: 'maven'
 
 repositories {
     mavenCentral()
-	maven {
-		url "http://maven.alfresco.com/nexus/content/groups/public"
-	}
+    maven {
+        url "https://artifacts.alfresco.com/nexus/content/groups/public-snapshots"
+    }
+    maven {
+        url "https://artifacts.alfresco.com/nexus/content/groups/public"
+    }
 }
 
 dependencies {
-	compile group: 'org.alfresco', name: 'alfresco-repository', version: '4.0.d'
+	compile group: 'org.alfresco', name: 'alfresco-repository', version: alfrescoVersion
 	compile group: 'com.yahoo.platform.yui', name: 'yuicompressor', version: '2.4.6'
     testCompile 'junit:junit:4.8.2'
 	
@@ -33,6 +36,9 @@ dependencies {
 	runtime group: 'org.springframework.extensions.surf', name: 'spring-surf-core', version: '1.0.0', transitive: true
 	runtime group: 'com.yahoo.platform.yui', name: 'yuicompressor', version: '2.4.6', transitive: true
 	
+ // bug with jaxen 1.1.3 dependencies
+ compile 'jaxen:jaxen:1.1.6'
+
 	deployerJars 'org.apache.maven.wagon:wagon-http:1.0-beta-2'
 }
 
